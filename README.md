@@ -51,4 +51,32 @@ One-way ANOVA는 n개 집단을 1개를 분석할 때 사용하고 two-way ANOVA
  ### independent observations(데이터 독립성)
   A그룹과 B그룹이 독립이어야한다. 즉, A그룹이 증가하면 B그룹도 증가하는 경향을 보이면 안된다.
 
-# 정규 분포
+# Normal Distribution(정규 분포)
+정규 분포는 연속적으로 발생하는 사건의 확률 분포이다.  
+표기로는 이렇게 나타낸다 N(x:m,s^2) 즉 확률변수 x는 평균=m, 분산=s^의 정규분포를 따른다는 뜻이다.  
+정규 분포 수식은 이러하다. ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/ae47f4a4-b091-44f5-802c-71bee013e0e0)  
+여기서 1/N은 면적의 합을 1로 만들어주는 스케일링 상수다.
+
+정규 분포는 probablity denstiy function(pdf)을 표현하는데 필요한 무한개의 데이터를 평균과 분산만으로 표현할 수 있다.
+
+## standard univariate normal distribution(표준 정규 분포)
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/bd7706f1-357e-42bb-b246-71d39c1b90ed)  
+표준 정규 분포는 분산을 1 평균을 0으로 만든 정규 분포이다.
+
+univariate normal distribution는 표준 정규 분포에서 평균만큼 shifting하고 분산만큼 scaling 한것이다.  
+x=s(scaling)z+m(shifting)
+
+## Multivariate Gaussian Models
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/c931a5d9-5e8f-4c7d-8348-9b644ca143a1)
+
+ 다변수 가우시안 모델은 정규 분포를 다차원 공간(하나의 변수가 아닌 여러개의 변수)으로 확장한 것으로 행렬형태로 표현된다.
+ 
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/8cf6463f-4bc9-4e9f-9b53-a5dbc0775895)  
+확률 변수가 2개일때 이 부분은 타원 방정식으로 생각할 수 있다.
+
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/c922bff1-b661-4ca0-b9d9-b929db78ad55)
+
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/ccdc523e-0703-4646-b7a6-21316f4096d2)  
+저렇게 나온 타원은 사진에서의 단면을 의미한다.
+
+
