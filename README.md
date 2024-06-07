@@ -79,4 +79,8 @@ x=s(scaling)z+m(shifting)
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/ccdc523e-0703-4646-b7a6-21316f4096d2)  
 저렇게 나온 타원은 사진에서의 단면을 의미한다.
 
+# Bayes' theorem(베이즈 정리)
+베이즈 정리는 두 확률 변수의 사전 확률과 사후 확률 사이의 관계를 나타내는 정리이다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/0c0f270f-03c4-4161-ab64-391f3d2b25a5)
+ 여기서:H는 Hypothesis로 사전확률을 의미하고 E는 Envidence로 증거를 의미한다. 즉 증거를 이용하여 사전확률을 업데이트 한 사후확률을 구하겠다는 의미이다.
 
