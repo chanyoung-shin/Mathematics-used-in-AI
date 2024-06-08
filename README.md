@@ -100,3 +100,11 @@ ex2) 1%의 발병률을 가진 코로나 바이러스가 있다. 또한 이 바�
  인공지능에서는 이 베이즈 정리를 이용한 나이브 베이지안 분류기라는 것이 있다.
 
  # Maximum Likelihood Estimation(최대 가능도 추정)
+ Maximum Likelihood Estimation(최대 가능도 추정)은 어떠한 확률 밀도 함수에서 관측된 표본데이터를 가지고 분산이나 평균같은 모수를 추정하는 것이다. 
+ Likehood(우도는) 연속 확률 분포에서 특정 사건이 발생할 가능성으로 이산 확률 분포의 확률과는 다른 개념이다. 우도를 그림으로 표현하면 다음과 같다.  
+ ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/3b8e2a98-a46f-42c5-833a-22c6952c16ce)
+
+Maximum Likelihood Estimation은 샘플 데이터(given data x)를 가장 잘 표현하는 분포를 구하는 것이다. 즉 그 분포의 평균과 분산을 구한다. 그럼 데이터에 최대한 맞는 분포를 찾으려면 어떻게 해야할까? 바로 주어진 데이터의 가능도(분포식에 x값을 넣은것)를 모두 곱한 값이 최대가 되는 분산과 평균을 찾으면 된다.  
+ex) {68,69,70,71,72} 이 표본 데이터를 활용해 최대 가능도 추정으로 평균을 구해보시오.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/afc1ffe3-7d79-49f6-b3e0-b229cc800b22)  
+위의 사진과 같이 먼저 가능드를 모두 곱해주고 미분을 편하게 하기위해 로그를 취해준다. 그 다음 가능도가 최대가 될떄의 m값을 구해야하니 m에 대해 미분한 값=0을 통해 m의 값을 추정할 수 있다.
