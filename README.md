@@ -125,10 +125,40 @@ PCA의 기본적인 원리는 데이터들의 특징을 살리기 위해 분산�
 
 # Regression Analysis(회귀 분석)
 
-## Linear Regression(선형 회귀)
+## 1.Linear Regression(선형 회귀)
 인공지능에서 가장 일반적으로 쓰이는 회귀 분석 선형 함수를 사용하여 독립변수와 예측변수간의 관계를 도출해냄 행렬로 나타내면 아래와 같다.  
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/401d1ec7-6761-4e64-a8a8-46e845f9b6b5)  
 또한 회귀식이 p=wx+b일때 실제 값하고의 차이는 다음과 같다. error={(y-(wx+b)}^2 error가 최소가 되는 w와 b를 구하는 방법은 다음과 같다.  
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/8056b4a7-e00c-4398-9b02-e0f9141a4359)  
 위의 만들어진 1번과 2번식을 연립하면 w와 b를 구할 수 있다.
+
+## 2.Logistic regression
+종속 변수가 이진형일 때(1과 0) 사용하는 회귀이다. 선형회귀에서는 범주형 자료가 이진형이면 관계를 추정하기 어렵다.  
+Logistic regression은 시그모이드 함수라는 것을 이용한다. 이 시그모이드 함수는 -무한에서 +무한까지의 값을 0과 1사이의 값으로 바꿔준다.
+
+### probability,odds,logit
+odds는 실패확률에 대한 성공 확률의 비율이다. 수식으로 나타내면 p(success)/(1-p(success))이다.  
+이 odds에다 로그를 취하면 log(p(success)/(1-p(success)))가 된다.  
+p[1~0]->odds[0~무한]->logit[-무한~+무한]으로 저과정은 1과0 사이의 확률을 -무한에서 +무한으로 범위를 바꿔주는 과정이다. 이 과정을 회귀식에 적용하여 거꾸로 하면 어떻게 될까? 다음은 역함수를 취해 주어 이과정을 거꾸로 하는 과정이다.  
+
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/6d342ea8-b75c-4d5c-8051-cb06947c7a57)  
+최종적으로 저런 식이 나오게되는데 저것이 바로 [-무한~+무한]의 값을 [0~1]의 값으로 바꿔주는 시그모이드 함수이다. "step function(계단 함수)를 쓰면 되지 저런 형식의 식이 필요할까?" 라고 생각할 수 있다. 그러나 step function 제대로 된 기울기가 형성되있지 않아(기울기가 0이다) 모델의 오차를 학습하는데 어려움이 있다.
+
+### Loss function
+Logistic regression은 손실 함수로 BCE(Binary cross entropy)라는 함수를 쓴다. 형태는 이러하다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/187b3f75-2f52-4dc5-820b-6d45ea4b9712)  
+y=정답값,y헷=예측값이다. 예측값이 정답에 가까울 수록 0에 근접하고 예측값이 정답에서 멀어질수록 +무한으로 발산한다.
+
+## 3.Softmax regression
+Softmax regression는 종속변수가 이진형이 아닌 그것 보다 많은 범주형 데이터에서 사용하는 회귀이다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/0bb33a4a-dd45-4914-8969-2a7fff98fa9e)  
+Softmax regression은 위의 사진과 같은 함수를 쓴다. 이 함수는 [-무한~+무한]의 값을 지수를 이용해 [0~+무한]의 값으로 바꿔준 다음에 [0~1]의 범위로 정규화 해준 것이다.
+
+### Loss function
+Softmax regression는 one-hot encoded cross entropy라는 것을 사용한다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/deee7cf3-7d1e-483d-8144-49659ef7e312)
+
+## 4.Polynomial regression
+
+
 
