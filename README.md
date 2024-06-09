@@ -108,3 +108,18 @@ Maximum Likelihood Estimation은 샘플 데이터(given data x)를 가장 잘 �
 ex) {68,69,70,71,72} 이 표본 데이터를 활용해 최대 가능도 추정으로 평균을 구해보시오.  
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/afc1ffe3-7d79-49f6-b3e0-b229cc800b22)  
 위의 사진과 같이 먼저 가능드를 모두 곱해주고 미분을 편하게 하기위해 로그를 취해준다. 그 다음 가능도가 최대가 될떄의 m값을 구해야하니 m에 대해 미분한 값=0을 통해 m의 값을 추정할 수 있다.
+
+# Principal Component Analysis, PCA((주성분 분석)
+NOTICE:PCA을 이해하기 위해선 고유벡터의 개념을 알아야한다.  
+
+Principal Component Analysis, PCA(주성분 분석)은 여러개의 독립변수들(고차원 데이터)의 특징을 잘 설명해 줄 수 있는 주성분을 추출해내는 기법이다. 이 주성분 분석은 고차원의 데이터를 저차원으로 투영시켜 학습시킬 때 자원을 아낄 수 있고 시각적으로 표현이 가능하게 해준다. 또한 주성분 분석을 통해 나온 특징들은 상관관계가 제거 되어 나온다. 즉 다중공신성을 제거해준다.
+PCA의 기본적인 원리는 데이터들의 특징을 살리기 위해 분산이 최대가 축에 투영 시키는 것이다.(또는 투영 시킨 점과 기존데이터의 차이를 최소화하는 축을 찾는다.)  이 과정은 다음과 같다.  
+먼저 데이터들의 평균이 0이되도록 shifting 해준다.(선형 변환을 위해선 필수적이다.) 그다음 분산이 1이되도록 scaling을 해준다.(단 분산이 중요한 데이터이면 하지 않아야한다.) 이후 변환시킨 데이터들을 투영했을 때 그 분산이 최대가 되는 단위 벡터를 찾는다. 이 과정을 수식적으로, 자세히 나태내면 아래 그림처럼 된다.
+
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/d53535d6-e8f0-40ff-8b9f-ccfeeb946bd7)  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/d9c9faea-e7dc-4f65-87ba-c776deace64c)  
+위의 결과를 보면  투영된 값들의 분산값이 shifting and scaling된 데이터의 공분산의 고윳값이라는 것을 알 수 있다. 또한 고유벡터가 축의 벡터라는 것도 알 수 있다. 또한 n개의 특성을 가진 데이터에서 최대 n개의 주성분을 추출할 수 있다는 것도 알 수 있다.(고유벡터의 특징)  
++PCA로 추출된 주성분의 공분산 행렬을 구하면 이런 형태가 나온다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/072089a2-6877-481c-b0c9-aae722579a70)  
+우선 z1,z2,z3끼리의 공분산은 주성분 추출과정에서 다중 공신성이 제거 되어 거의 0에 가깝게 나온다. z1의 분산은 주성분의 분산 즉 축에 투영된 데이터가 최대가 되는 분산이브로 원본(shifting scalinge된)데이터의 고윳값이 된다.
+
