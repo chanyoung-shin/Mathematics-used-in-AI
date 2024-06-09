@@ -123,3 +123,12 @@ PCA의 기본적인 원리는 데이터들의 특징을 살리기 위해 분산�
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/072089a2-6877-481c-b0c9-aae722579a70)  
 우선 z1,z2,z3끼리의 공분산은 주성분 추출과정에서 다중 공신성이 제거 되어 거의 0에 가깝게 나온다. z1의 분산은 주성분의 분산 즉 축에 투영된 데이터가 최대가 되는 분산이브로 원본(shifting scalinge된)데이터의 고윳값이 된다.
 
+# Regression Analysis(회귀 분석)
+
+## Linear Regression(선형 회귀)
+인공지능에서 가장 일반적으로 쓰이는 회귀 분석 선형 함수를 사용하여 독립변수와 예측변수간의 관계를 도출해냄 행렬로 나타내면 아래와 같다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/401d1ec7-6761-4e64-a8a8-46e845f9b6b5)  
+또한 회귀식이 p=wx+b일때 실제 값하고의 차이는 다음과 같다. error={(y-(wx+b)}^2 error가 최소가 되는 w와 b를 구하는 방법은 다음과 같다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/8056b4a7-e00c-4398-9b02-e0f9141a4359)  
+위의 만들어진 1번과 2번식을 연립하면 w와 b를 구할 수 있다.
+
