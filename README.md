@@ -159,6 +159,29 @@ Softmax regression는 one-hot encoded cross entropy라는 것을 사용한다.
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/deee7cf3-7d1e-483d-8144-49659ef7e312)
 
 ## 4.Polynomial regression
+선형 모델을 사용하여 비선형 데이터 집합을 모델링 하는것 이 글에서는 interpolation(보간법)위주로 설명한다.
+
+### interpolation(보간법)
+#### polynomial interpolation
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/9fcdffd9-17f8-4157-b619-89f056a3245b)  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/fb688436-d275-44b2-8c65-dbc8cabd1903)  
+이 방법은 모델을 구하는 기본적인 방법이다. 그러나 계산이 너무 복잡하다는 문제가 있다.
+
+#### Newton's interpolation
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/3e7de992-339f-45ad-bfec-8a5cc2dcda8a)  
+이것은 뉴턴 보간법이다. 위의 방법보다 계산이 쉽다. 또한 예시로 든 3개의 데이터에서 새로운 데이터가 추가되어도 새로운 데이터에 관한것만 계산하면 되기에 시시각각 변하는 능동적인 모델에 적합하다.
+
+#### Lagrangian interpolation
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/747e9815-3bc3-4b0b-a92d-f03004249998)  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/9f54ece0-04d4-4818-b9a2-ca798769912a)  
+이것은 라그랑지에 보간법이다. 위의 방법과 다르게 선형 시스템이 필요없다는 장점이 있어서 계산이 더 간편하다. 하지만 새로운 데이터가 추가되면 처음부터 다시 계산해야되기 때문에 시시각각 변하는 능동적인 모델에 적합하지 않다.
+
+
+
+
+
+
+
 
 
 
