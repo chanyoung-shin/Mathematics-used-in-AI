@@ -176,6 +176,23 @@ Softmax regression는 one-hot encoded cross entropy라는 것을 사용한다.
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/9f54ece0-04d4-4818-b9a2-ca798769912a)  
 이것은 라그랑지에 보간법이다. 위의 방법과 다르게 선형 시스템이 필요없다는 장점이 있어서 계산이 더 간편하다. 하지만 새로운 데이터가 추가되면 처음부터 다시 계산해야되기 때문에 시시각각 변하는 능동적인 모델에 적합하지 않다.
 
+### Spline interpolation
+Spline interpolation은 점과 점사이마다 함수가 있는 것이다. Spline interpolation은 대표적으로 Linear spline, Quadatic spline, Cubic spline있다.
+
+#### Linear spline
+Linear spline는 점과 점사이의 함수가 1차 함수인 것으로 아래 사진 처럼 점과 점사이의 직선을 이용하여 구한다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/acf460f9-459b-4674-964e-54f4679ae115)
+
+#### Quadratic spline
+Quadratic spline는 점과 점사이의 함수가 2차 함수인 것으로 아래의 식을 이용해 연립방정식을 만들어 구한다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/b1d6155f-11eb-42cd-b8fe-1824eae51fb7)  
+위의 사진에서 함수가 3개이므로 3*n(n=3)개의 미지수가 있으므로 총 3n개의 방정식이 필요하다. 위의 식에서 처럼 점을 함수식에 대입했을 때에 2n개의 수식이 나온다. 이루 끝점을 제외한 점에 이어져있는 두함수의 기울기를 같게하여 n-1개의 수식을 얻어준다. 이후 1개의 수식이 부족하므로 양쪽의 함수중 하나를 직선의 방정식(a=0으로 만듬)으로 만들어 나머지 하나의 수식(a1=0 or a3=0)을 얻어 총 3n개의 수식을 얻어준다. 이렇게 얻은 수식을 이용하여 함수식을 구할 수 있다.
+
+#### Cubic spline
+Cubic spline는 점과 점사이의 함수가 3차 함수인 것으로 아래의 식을 이용해 연립방정식을 만들어 구한다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/1159fb2b-0809-44fd-87bc-4606cd12c80d)  
+cubic의 함수식을 구하는 것은 Quadratic spline과 비슷하다. 그러나  Quadratic spline이 양쪽의 함수를 두번 미분한것중 하나를 0으로 만든것과 다르게 양쪽의 함수를 두번 미분한것을 모두 0으로 두어 수식을 얻는다.
+
 
 
 
