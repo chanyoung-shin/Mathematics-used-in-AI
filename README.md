@@ -1,4 +1,4 @@
-# Mathematics-used-in-AI
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/49651e22-db3f-41a0-a699-77ed9b069cf0)# Mathematics-used-in-AI
 
 이것의 내용은 wiki부분에 있습니다.
 
@@ -217,6 +217,63 @@ x1*(-0.4)+x2*(-0.4)<=0.6: return 0 x1*(-0.4_+x2*(-0.4)>0.6: return 1
 하지만 이것은 기존 perceptron으로 구현할 수 없음 단 다중 퍼셉트론으로 가능  
 NAND를 여러개 구성해 구현가능, NAND,OR,AND를 적절히 조합하여도 구현가능->선형 시스템 perceptron을 조합하여 XOR해결->deep learning 원형
 
+# Activation Function(활성화 함수) 
+Activation Function은 비선형성을 추가해주어 Hidden layer(은닉층)에 의미를 부여해준다. 만약 Activation function이 존재하지 않는다면 층을 쌓는 의미가 없어진다. 즉 층을 아무리 많이 쌓아도 층이없는 신경망이랑 다를바가 없다는 것
 
+## step function(계단 함수)
+perceptron 에서 사용하는 activation function이다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/32a8e1da-691a-4b22-91ec-efe988e8d690)  
+
+### boundary problem
+step function은 0.000000001과 -0.000000001은 다르게 보고 0.00000001과 10은 같게 본다.
+
+### 미분 문제
+step function은 임계치 부분에서 불연속이기 때문에 미분이 불가능하다. 이 부분만 제외하고는 미분이 가능하지만 제일 큰 문제는 모든 부분을 미분해도  미분값이 0이라는 것이다. 즉 가중치를 업데이트 하지 못한다.
+
+## sigmoid function
+step function 과 유사함, 연속적이어서 모든 부분에서 미분이 가능하고 step function과 다르게 미분값이 0이 아님, 미분 결과가 간편함 f'=(1-f)f f:sigmoid, 0~1의 값을 가지기 때문에 확률 개념과 결합 가능  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/72451f3a-a986-4846-a94d-4189b92a90a3)  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/e505168c-2ae0-4646-b90d-feccd63d0279)  
+
+### zigzag problem
+
+### Gradient vanishing
+신경망에서 층을 거듭할 수록 오차를 전달하지 못하는 문제이다.
+
+## hyperbolic tangent(tanh)
+sigmoid와 유사함  
+sigmoid보다 학습속도가 빠름 그 이유는 tanh가 zero centered되 있기 때문 즉, 0이 나오는 값은 베제되기 때문에  
+sigmoid보다 이론상 층을 4배 깊게 쌓을 수 있지만 여전히 gradient vanishing 발생0  
+sigmoid와 다르게 양수와 음수 모두 출력할 수 있어 zigzag problem 해결
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/8bc410fc-fb06-4322-a229-f7b996322490)
+
+## rectified linear unit(ReLU)
+미분 했을 때 0보다 크면 항상 1이 나오기 때문에 Gradient vanishing 해결  
+간단한 함수의 형태와, 0보다 작은 값들은 모두 버리기 때문에 학습속도가 아주 빠름  
+신경망을 깊게 쌓을 수 있음  
+단,sigmoid처럼 zigzag problem 발생  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/0eb4bc10-e7a9-47bf-94d7-2487b928d0f1)  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/dccede1b-49c4-4eb5-9029-743a47202518)
+
+### dying ReLU
+0보다 작은 값들은 모두 0이되어 정보가 소실되는 문제이다. 즉, 0보다 작은값들이 많이 나오게 되면 파라미터의 업데이트가 원할하지 않다.
+
+### Leaky ReLU
+0보다 작은 값들에게 조금의 기울기를 주어 dying RELU문제를 해결한 함수이다.
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/923464d6-4259-485a-a290-55687d86b423)
+
+### parametric ReLU(PReLU)
+각 레이어마다 활성화 함수의 a값을 학습시키는 함수이다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/6109e648-250a-4dca-a11b-29e10a81c13f)
+
+### exponential linear unit(ELU)
+너무 작은 음수들은 학습에 잘 참여 시키지 않게 고안된 함수이다. 성능이 매우 우수하다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/00741789-5ddf-47a1-86a8-8d7b1a03790f)  
+->https://pytorch.org/docs/stable/generated/torch.nn.ELU.html
+
+### gaussian error linear unit
+BERT나 GPT에 사용되는 Activation function으로 정규분포를 근사화 하는 함수. 메우 깊은 신경망에서 ReLU보다 높은 정확도를 보인다.
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/5a83b683-9f1b-4f1a-9fcb-4177e3305f4d)  
+->https://pytorch.org/docs/stable/generated/torch.nn.GELU.html
 
 
