@@ -1,4 +1,4 @@
-![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/49651e22-db3f-41a0-a699-77ed9b069cf0)# Mathematics-used-in-AI
+# Mathematics-used-in-AI
 
 이것의 내용은 wiki부분에 있습니다.
 
@@ -236,9 +236,14 @@ step function 과 유사함, 연속적이어서 모든 부분에서 미분이 �
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/e505168c-2ae0-4646-b90d-feccd63d0279)  
 
 ### zigzag problem
+우선 zigzag와 Gradient vanishing을 설명하기 위해 가중치의 업데이트하는 과정이 어떻게 이루어지는지 확인하겠다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/f8fce4c3-b14c-4f9e-8acd-b5e23c41f2f9)  
+이런식으로 미분을 통해 가중치가 업데이트 된다. 위의 수식을 보면 가중치가 업데이트 되는 방향이 -(y1-a21)(손실함수를 미분한값)에의해 결정되는 것을 볼 수 있다.( f'()시그모이드의 미분값이므로 항상 0보다 크다. a11은 sigmoid를 통과한 값으로 이 역시 항상 0보다 크다.) 따라서 가중치들이 업데이트될 때 모두 같은 방향으로 업데이트되기 때문에 최적의 w를 비효율적으로 찾는다.
 
-### Gradient vanishing
-신경망에서 층을 거듭할 수록 오차를 전달하지 못하는 문제이다.
+### Gradient vanishing  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/fa395b45-e1b4-46bf-8484-2d7ce788a14d)  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/32ef0975-a412-4f30-a8ca-e21e99ff67de)  
+신경망에서 층을 거듭할 수록 오차를 전달하지 못하는 문제이다. 위식을 보면 층이 깊어질수록 sigmoid를 미분한 값을 계속 곱해주는 것을 볼 수 있다. sigmoid의 미분값은 항상 1보다 작기 때문에 곱해지면 곱해질수록 0으로 수렴한다. 즉 오차가 제대로 전달이 안된다.
 
 ## hyperbolic tangent(tanh)
 sigmoid와 유사함  
@@ -276,4 +281,21 @@ BERT나 GPT에 사용되는 Activation function으로 정규분포를 근사화 
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/5a83b683-9f1b-4f1a-9fcb-4177e3305f4d)  
 ->https://pytorch.org/docs/stable/generated/torch.nn.GELU.html
 
+# Gradient Descent(GD,경사하강법) && Backpropagation
+경사하강법은 손실함수의 값이 낮아지는 방향으로 가중치를 변환시켜 나아가는 방법이다. 가중치를 업데이트 다음과 같은 수식을 이용한다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/3bc6701a-74cf-4fee-a1fb-ac106a959ca3)  
+w0는 이전 가중치 값 a는 학습률, E 정답값과 예측값의 손실함수다.
 
+## 손실함수
+신경망에서 계산된 값과 실제 나와야하는 값의 차이를 계산하는 함수 파라미터를 업데이트할 때 사용된다.  
+MSE,KL-divergence,JSD,BCE등이 있다. 이런 손실함수에서 나온 오차값을 이용해 파라미터를 업데이트 한다.
+
+## chain rule(연쇄법칙)
+y=f(x)=x^2+3이고  
+t=x^2이라하자. 또한 y는 t에대해 미분 가능하고 t는 x에대해 미분 가능하다.  
+이것을 미분할 때 다음과 같이 쓸 수 있다.  
+dy/dx=dy/dt*dt/dx  
+이것이 chain rule이다.
+
+다음은 오차를 이용해 가중치를 업데이트하는 과정이다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/f8fce4c3-b14c-4f9e-8acd-b5e23c41f2f9)
