@@ -193,11 +193,29 @@ Cubic spline는 점과 점사이의 함수가 3차 함수인 것으로 아래의
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/1159fb2b-0809-44fd-87bc-4606cd12c80d)  
 cubic의 함수식을 구하는 것은 Quadratic spline과 비슷하다. 그러나  Quadratic spline이 양쪽의 함수를 두번 미분한것중 하나를 0으로 만든것과 다르게 양쪽의 함수를 두번 미분한것을 모두 0으로 두어 수식을 얻는다.
 
+# perceptron(퍼셉트론)
+여러 입력값을 받아 가중치를 곱하고 그 결과를 합한 값이 임계치를 넘으면 1또는 0을 출력하는 선형 시스템  
+ex) x1*w1+x2*w2 <=b-->b보다 작으면 0 크면 1 반환
 
+## AND gate
+2개의 입력 x1,x2가 모두 1일 때 1을 반환  
+ex)(1,1)->1 (1,0)->0  
+x1*0.4+x2*0.4<=0.7: return 0 x1*0.4+x2*0.4>0.7: return 1
 
+## OR gate
+2개의 입력 x1,x2 둘 중 하나라도 1이면 1반환  
+ex)(1,1)->1,(1,0)->1.(0,0)->0  
+x1*0.4+x2*0.4<=0.3: return 0 x1*0.4+x2*0.4>0.3: return 1
 
+## NAND gate
+2개의 입력 x1,x2가 모두 1일 때 0반환 나머지는 1반환  
+ex)(1,1)->0 (1,0)->1
+x1*(-0.4)+x2*(-0.4)<=0.6: return 0 x1*(-0.4_+x2*(-0.4)>0.6: return 1
 
-
+## XOR gate
+2개의 입력 x1,x2 (1,0),(0,1)일때만 1반환  
+하지만 이것은 기존 perceptron으로 구현할 수 없음 단 다중 퍼셉트론으로 가능  
+NAND를 여러개 구성해 구현가능, NAND,OR,AND를 적절히 조합하여도 구현가능->선형 시스템 perceptron을 조합하여 XOR해결->deep learning 원형
 
 
 
