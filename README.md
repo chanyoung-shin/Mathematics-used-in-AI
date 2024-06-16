@@ -31,6 +31,39 @@ MSE에서 제곱에 의해 생기는 문제점들을 어느정도 해소 시킨�
 ![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/2a6840cd-7893-4616-bcb4-377402bcf919)  
 RSME와 마찬가지로 왜곡에 대해 둔감한 함수이다. RMSE보다 더 둔감하다. 따라서 모델을 평가할 때 자주 사용된다.
 
+# 공분산과 상관계수
+## 공분산
+공분산은 두확률 변수의 선형적 관계를 나타내는 수이다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/1ab24e82-8022-472d-9406-ab4f0a3f123e)(이것은 표본 공분산이다. 모 공분산일 때는 n-1이 아닌 n이다.)  
+만약 하나의 값이 평균 보다 클때 다른 값도 해당 평균 보다 작거나 크다면 선형관계를 갖는다고 볼 수있다. 또한 한 쪽이 크면 다른 한 쪽도 큰 관계라면 양의 공분산을 가지고 다른 한쪽이 작은 관계라면 음의 공분산을 가진다. 만약 무상관이면 0에 가까운 값을 갖는다. 그리고 범위에도 영향을 받는다.
+
+## 공분산 행렬
+만약 확률 변수 n개가 있다면 {x1,x2,...,xn}에 대한 공분산 행렬은 다음과 같이 정의할 수 있다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/7e04941e-f176-4f6e-8eef-8a297b6b7d47)(http://www.ktword.co.kr/test/view/view.php?no=5596)
+대각 행렬은 각 확률변수의 분산이고 비대각 행렬은 확률변수들 끼리의 공분산이다.
+
+### 기하학적 의미
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/a93d3807-74c4-49e2-b665-231585011295)  
+x=[1,3,3,5] y=[1,3,1,3]이고 공분산은  
+[2,1]  
+[1,1]  
+이다. 이 공분산 행렬의 고유 벡터와 고윳값은 위 사진에 적혀있는것과 같다. 즉 고유벡터의 방향 벡터는 데이터들의 분산의 방향이고 고윳값은 분산의 크기이다. 또한 원형으로 분포되어 있는데이터를 공분산 행렬로 선형변환 시켜 저렇게 변한다고도 볼 수 있다.
+
+## 상관계수
+상관계수는 상관관계의 정도를 수치화한 수로 다음과 같이 나타낼 수 있다.  
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/ae7e1369-89ea-4cbe-956e-e72cd495c0ed)
+
+#  normalization,standardization
+모델을 학습 전에 scaling하는 것 scale이 큰 feature에 의해 그 영향이 비대해지는 것을 방지해준다.
+## normalization(정규화)
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/a9af0a56-fab1-444f-8950-9f019662841c)  
+데이터셋의 범위차이를 왜곡하지 않고 공통 척도로 변경한다.  
+최대값 및 최소값을 이용하ㅣ여 스케일링한다. feature의 범위가 다를 때 사용한다. 주로 [0~1]로 스케일링한다. 상대적 크기에 대한 영향력을 줄여준다.
+
+## standardization(표준화)
+![image](https://github.com/chanyoung-shin/Mathematics-used-in-AI/assets/165111440/ee5403ef-c767-4a95-959e-156a5c39ee94)  
+평균이 0이고 표준편차가 1인 표준 정규 분포의 속성을 갖도록 변경한다.  
+평균과 표준편차로 스케일링 한다. 데이터 분포를 정규분포 형태로 변환시 사용한다. 특정범위에 딱히 제한되어 있지 않다. 이상치를 제거할 때도 사용된다.
 
 # t-test,ANOVA 
 
