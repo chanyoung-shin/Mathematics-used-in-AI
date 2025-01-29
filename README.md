@@ -1,309 +1,298 @@
 # english.ver
 # Mathematics-used-in-AI
-
-> **Note**: Much of the content here is based on the “Wiki” section in the project repository.
-
 ---
 
-# 1. Mean, Expected Value, Variance
+## 1. Mean, Expected Value, Variance
 
-## Mean (평균)
+### Mean (평균)
 - The **mean** is a representative value of a dataset—specifically, the sum of all data points divided by the number of data points.
 - Various types of means:
   1. **Arithmetic Mean**
-  2. **Harmonic Mean**: often used when dealing with rates or when normalizing different baselines.  
-     - Example: computing average speeds over equal distances but at different rates.
-  3. **Geometric Mean**: takes the n-th root of the product of n positive numbers.  
-     - Example: if you reduce size by 1/2 then enlarge it by 2, the geometric mean yields \(\sqrt{\frac{1}{2} \times 2} = 1\).
+  2. **Harmonic Mean**: often used when dealing with rates.  
+  3. **Geometric Mean**: for example, if you reduce size by \( \tfrac12 \) and then enlarge it by 2, the geometric mean is  
+    $$
+    \sqrt{\frac{1}{2} \times 2} = 1.
+    $$
 
-## Expected Value (기댓값)
-- The **expected value** is effectively the average outcome of a probabilistic event over many trials.
-- If you imagine an experiment repeated infinitely, the sample mean approaches the expected value.
-- Example: In the MNIST dataset, some texts refer to the “expectation” rather than the “mean” because each data sample is drawn with some probability.
+### Expected Value (기댓값)
+- The **expected value** is the mean outcome of a probabilistic event over many trials.
+- If you imagine infinitely many trials, the sample mean converges to the expected value.
+- In practice (e.g., MNIST), the term “expectation” is sometimes used to emphasize probabilistic interpretation.
 
-## Variance (분산)
-- Variance measures the average squared distance of each data point from the mean:
-  \[
-  \sigma^2 = \frac{\sum (x_i - \bar{x})^2}{n}
-  \quad (\text{for a population}),
-  \quad
-  s^2 = \frac{\sum (x_i - \bar{x})^2}{n-1}
-  \quad (\text{for a sample})
-  \]
-- Because the mean and variance are easy to calculate and interpret, they appear frequently in statistical analysis (e.g., normal distributions).
-
----
-
-# 2. MSE, RMSE, MAE
-
-## MSE (Mean Squared Error)
-\[
-\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-\]
-- A common **loss function** for regression tasks.
-- Quadratic term → differentiable everywhere.
-- Highly sensitive to outliers: large errors become disproportionately large.
-
-## RMSE (Root Mean Squared Error)
-\[
-\text{RMSE} = \sqrt{\text{MSE}}
-\]
-- Also used for regression tasks, but somewhat reduces the distortion from very large errors compared to MSE.
-- Often used as an **evaluation** metric rather than a training loss.
-
-## MAE (Mean Absolute Error)
-\[
-\text{MAE} = \frac{1}{n} \sum_{i=1}^{n} \lvert y_i - \hat{y}_i \rvert
-\]
-- Less sensitive to outliers compared to MSE or RMSE.
-- Frequently used for **model evaluation** because it’s simpler to interpret (direct average of absolute errors).
+### Variance (분산)
+- Variance measures how spread out data is from the mean. For a population:
+$$
+\sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2,
+$$
+and for a sample,
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2.
+$$
 
 ---
 
-# 3. Covariance and Correlation Coefficient
+## 2. MSE, RMSE, MAE
 
-## Covariance (공분산)
-- Measures the **linear relationship** between two random variables \(X\) and \(Y\).  
+### MSE (Mean Squared Error)
+$$
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} \bigl(y_i - \hat{y}_i\bigr)^2.
+$$
+
+- Common loss function in regression.
+- Everywhere differentiable (quadratic form).
+- Sensitive to outliers (large errors grow quadratically).
+
+### RMSE (Root Mean Squared Error)
+$$
+\text{RMSE} = \sqrt{\text{MSE}}.
+$$
+
+- Also used for regression.
+- Reduces extreme distortion slightly compared to MSE.
+- Often used for **evaluation** rather than training.
+
+### MAE (Mean Absolute Error)
+$$
+\text{MAE} = \frac{1}{n} \sum_{i=1}^n \lvert y_i - \hat{y}_i \rvert.
+$$
+
+- Less sensitive to large outliers than MSE or RMSE.
+- Often used for model evaluation.
+
+---
+
+## 3. Covariance and Correlation Coefficient
+
+### Covariance (공분산)
+- Measures the **linear relationship** between two variables \(X\) and \(Y\).  
 - Sample covariance:
-  \[
-  \text{Cov}(X,Y) = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{n-1}
-  \]
-- \(\text{Cov}(X,Y) > 0\) → variables tend to move in the same direction (positive correlation).  
-- \(\text{Cov}(X,Y) < 0\) → they tend to move in opposite directions (negative correlation).  
-- \(\text{Cov}(X,Y) \approx 0\) → likely no linear relationship.
+$$
+\text{Cov}(X,Y) 
+= \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}).
+$$
+- \(\text{Cov}(X,Y) > 0\) → positive relationship; \(\text{Cov}(X,Y) < 0\) → negative relationship; near 0 → likely no linear relationship.
 
-## Covariance Matrix (공분산 행렬)
-- For \(n\) variables \(\{x_1, x_2, \dots, x_n\}\), the covariance matrix is:
-  \[
-  \Sigma = 
-  \begin{bmatrix}
-  \text{Var}(x_1) & \text{Cov}(x_1, x_2) & \dots & \text{Cov}(x_1, x_n) \\
-  \text{Cov}(x_2, x_1) & \text{Var}(x_2) & \dots & \text{Cov}(x_2, x_n) \\
-  \vdots & \vdots & \ddots & \vdots \\
-  \text{Cov}(x_n, x_1) & \text{Cov}(x_n, x_2) & \dots & \text{Var}(x_n)
-  \end{bmatrix}
-  \]
-- The diagonal entries are variances; off-diagonal entries are pairwise covariances.
+### Covariance Matrix (공분산 행렬)
+- For \(n\) variables \(\{x_1, \dots, x_n\}\),
+$$
+\Sigma =
+\begin{bmatrix}
+\text{Var}(x_1) & \text{Cov}(x_1, x_2) & \dots & \text{Cov}(x_1, x_n) \\
+\text{Cov}(x_2, x_1) & \text{Var}(x_2)   & \dots & \text{Cov}(x_2, x_n) \\
+\vdots         & \vdots         & \ddots & \vdots \\
+\text{Cov}(x_n, x_1) & \text{Cov}(x_n, x_2) & \dots & \text{Var}(x_n)
+\end{bmatrix}.
+$$
 
-### Geometric Meaning
-- The eigenvectors of the covariance matrix point in the directions of **principal axes** (max variance directions).
-- The corresponding eigenvalues represent the **magnitude** of the variance along those directions.
-
-## Correlation Coefficient (상관계수)
-- A standardized version of covariance:
-  \[
-  \rho_{X,Y} = \frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X)\text{Var}(Y)}}
-  \]
-- Ranges from \(-1\) to \(+1\).
+### Correlation Coefficient (상관계수)
+- Standardized covariance:
+$$
+\rho_{X,Y}
+= \frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X) \text{Var}(Y)}}.
+$$
 
 ---
 
-# 4. Normalization vs. Standardization
+## 4. Normalization vs. Standardization
 
-**Feature scaling** prevents features with large numeric ranges from dominating a model.
+### Normalization (정규화)
+$$
+x^\prime = \frac{x - \min(x)}{\max(x) - \min(x)}.
+$$
 
-## Normalization (정규화)
-\[
-x^\prime = \frac{x - \min(x)}{\max(x) - \min(x)}
-\]
-- Rescales features to a [0, 1] (or another fixed) range.
-- Preserves the shape of the data distribution but changes the scale.
+- Rescales data to [0, 1] range.
+- Preserves shape but unifies scale.
 
-## Standardization (표준화)
-\[
-x^\prime = \frac{x - \mu}{\sigma}
-\]
+### Standardization (표준화)
+$$
+x^\prime = \frac{x - \mu}{\sigma}.
+$$
+
 - Transforms data to have mean 0 and standard deviation 1.
-- Commonly used when you assume data to be normally distributed.
+- Useful if data is (or is assumed to be) normally distributed.
 
 ---
 
-# 5. t-test and ANOVA
+## 5. t-test and ANOVA
 
-## Null Hypothesis (귀무가설) & Alternative Hypothesis (대립가설)
-- **Null Hypothesis (H₀)**: Typically the hypothesis assumed true at the start (e.g., “mean = 30”).
-- **Alternative Hypothesis (H₁)**: Usually the hypothesis we want to prove (e.g., “mean ≠ 30”).
-- The **p-value** indicates whether the null hypothesis is to be rejected (p < 0.05 → reject H₀).
+### Null Hypothesis (H₀) & Alternative Hypothesis (H₁)
+- **H₀**: typically the baseline assumption (e.g., means are equal).
+- **H₁**: the hypothesis we aim to support (means are not equal).
+- p-value < 0.05 → reject H₀; otherwise, fail to reject H₀.
 
-## t-test
-- **t-test** compares the means of two groups.
-  - **Paired t-test**: Compares two sets of related measurements (e.g., before/after on the same subjects).
-  - **Independent t-test**: Compares two separate groups.
+### t-test
+- Compares **two** group means.
+- **Paired t-test**: same subjects tested before/after.
+- **Independent t-test**: two separate groups.
 
-## ANOVA (Analysis of Variance)
-- Used to compare **3 or more** group means.
-  - **One-way ANOVA**: 1 factor of interest (e.g., group A/B/C).
-  - **Two-way ANOVA**: 2 factors of interest (e.g., group A/B/C & gender).  
-  - **MANOVA**: Multiple dependent variables.
-- **Post hoc tests** (e.g., Tukey’s test) compare specific group pairs after a significant overall F-test.
+### ANOVA (Analysis of Variance)
+- Compares **3 or more** group means (one-way, two-way, etc.).
+- If p < 0.05, at least one group is significantly different.
+- Additional **post hoc** tests compare specific group pairs.
 
 ### Conditions
-1. **Normality**: Data should be (approximately) normally distributed. Otherwise, use nonparametric tests.  
-2. **Homogeneity of Variances**: Group variances should be similar (Levene’s test checks this).  
-3. **Independence of Observations**: Observations in different groups should be independent.
+1. **Normality**: data must be approx. normal.
+2. **Homogeneity of Variance**: group variances are similar.
+3. **Independence of Observations**.
 
 ---
 
-# 6. Normal Distribution (정규 분포)
+## 6. Normal Distribution (정규 분포)
 
-- A continuous probability distribution represented as \(N(\mu, \sigma^2)\).
-- The **PDF** of a normal distribution:
-  \[
-  f(x) = \frac{1}{\sqrt{2\pi}\,\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
-  \]
-- Entirely determined by **mean \(\mu\)** and **variance \(\sigma^2\)**.
+- Probability distribution \(N(\mu, \sigma^2)\).
+- Probability density function (PDF):
+$$
+f(x) = \frac{1}{\sqrt{2\pi}\,\sigma}\exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right).
+$$
+- Defined by **mean \(\mu\)** and **variance \(\sigma^2\)**.
 
-## Standard Normal Distribution (표준 정규 분포)
-\[
-Z = \frac{X - \mu}{\sigma} \quad \text{which follows } N(0, 1)
-\]
+### Standard Normal Distribution (표준 정규 분포)
+$$
+Z = \frac{X - \mu}{\sigma} \quad \text{follows } N(0, 1).
+$$
 
-## Multivariate Gaussian
-- Extension of normal distribution to multiple dimensions, using mean vector \(\boldsymbol{\mu}\) and covariance matrix \(\Sigma\).
-
----
-
-# 7. Bayes' Theorem (베이즈 정리)
-
-\[
-P(H \mid E) = \frac{P(E \mid H)\,P(H)}{P(E)}
-\]
-- **H**: Hypothesis; **E**: Evidence.
-- Updates prior probability \(P(H)\) to posterior probability \(P(H \mid E)\) using new evidence \(E\).
-
-### Example: Monty Hall Problem
-- Switching your initial choice **doubles** your chance of winning the car.
-- Bayes' Theorem provides a formal proof.
+### Multivariate Gaussian
+- Extension to multiple dimensions using a mean vector \(\boldsymbol{\mu}\) and covariance matrix \(\Sigma\).
 
 ---
 
-# 8. Maximum Likelihood Estimation (MLE, 최대 가능도 추정)
+## 7. Bayes' Theorem (베이즈 정리)
 
-- MLE finds parameter values (e.g., \(\mu, \sigma^2\)) that maximize the **likelihood** of observed data.
-- Likelihood \(L(\theta)\) = product of probabilities (or PDFs) of the data points under parameter \(\theta\).
-- Often we maximize \(\log L(\theta)\) (log-likelihood) for easier differentiation.
+$$
+P(H \mid E) 
+= \frac{P(E \mid H)\,P(H)}{P(E)}.
+$$
+
+- **H**: hypothesis, **E**: evidence.
+- Updates prior \(P(H)\) to posterior \(P(H\mid E)\).
 
 ---
 
-# 9. Principal Component Analysis (PCA, 주성분 분석)
+## 8. Maximum Likelihood Estimation (MLE)
 
-- PCA finds **principal components** (new axes) along which the data variance is maximized.
-1. Center the data (mean = 0).
-2. Optionally scale (variance = 1) if needed.
+- **MLE** finds parameter values (e.g., \(\mu, \sigma\)) that **maximize the likelihood** of observed data.
+- Often we maximize the **log-likelihood** to simplify differentiation.
+
+---
+
+## 9. Principal Component Analysis (PCA)
+
+- Finds new axes (principal components) that maximize variance.
+1. Center data (subtract mean).
+2. Possibly scale by std dev.
 3. Compute covariance matrix \(\Sigma\).
-4. Find eigenvectors & eigenvalues of \(\Sigma\).
-   - Eigenvectors are principal component directions.
-   - Eigenvalues represent variance along those directions.
-- **Dimensionality Reduction**: keep top \(k\) principal components to reduce dimension from \(n\) to \(k\).
+4. Eigen-decompose \(\Sigma\) → eigenvectors are principal axes, eigenvalues are variances.
+- **Dimensionality Reduction** by selecting top \(k\) principal components.
 
 ---
 
-# 10. Regression Analysis (회귀 분석)
+## 10. Regression Analysis
 
-## 1) Linear Regression (선형 회귀)
-\[
-\hat{y} = w x + b
-\]
+### 1) Linear Regression
+$$
+\hat{y} = w x + b.
+$$
+
 - Minimizes \(\sum (y_i - \hat{y}_i)^2\).
-- Analytical solution for 1D or multiD can be derived by setting partial derivatives to zero.
+- Has closed-form solutions or can be optimized by gradient methods.
 
-## 2) Logistic Regression
-- For **binary classification** (target \(\in \{0,1\}\)).
-- Uses **sigmoid** function to map \((-\infty, +\infty) \to (0,1)\).
-- **Loss function**: Binary Cross Entropy (BCE).
+### 2) Logistic Regression
+- **Binary classification**.
+- Uses the **sigmoid** function to map \((-\infty, +\infty)\) to \((0, 1)\).
+- **Loss**: Binary Cross Entropy.
 
-## 3) Softmax Regression
-- Extends logistic regression to **multi-class classification**.
-- Softmax function normalizes logits so that output probabilities sum to 1.
-- **Loss function**: Cross Entropy for one-hot labels.
+### 3) Softmax Regression
+- **Multi-class classification** generalization of logistic regression.
+- Applies the softmax function for probabilities across classes.
+- **Loss**: Cross Entropy (often one-hot coded).
 
-## 4) Polynomial Regression
-- Uses polynomial terms to model nonlinear relationships:
-  \[
-  \hat{y} = w_0 + w_1 x + w_2 x^2 + \dots + w_d x^d.
-  \]
-- **Interpolation** (보간법) references:
-  1. **Polynomial Interpolation** (e.g., Lagrange, Newton).
-  2. **Spline Interpolation** (Linear, Quadratic, Cubic).
+### 4) Polynomial Regression
+- Fits polynomial terms to model nonlinear relationships.  
+- Interpolation approaches include Lagrange, Newton, and spline interpolation.
 
 ---
 
-# 11. Perceptron (퍼셉트론)
+## 11. Perceptron (퍼셉트론)
 
-- A linear classifier with weights \(\mathbf{w}\) and a threshold \(b\).
-  \[
-  \text{output} = 
-  \begin{cases}
-  1 & (\mathbf{w} \cdot \mathbf{x} > b) \\
-  0 & (\mathbf{w} \cdot \mathbf{x} \le b)
-  \end{cases}
-  \]
-- NAND, OR, AND can be implemented with a single perceptron.  
-- **XOR** is **not** linearly separable, requiring at least a **multi-layer network**.
+- A linear model with weights \(\mathbf{w}\) and threshold \(b\):
+$$
+\text{output} = \begin{cases}
+1 & (\mathbf{w}\cdot \mathbf{x} > b),\\
+0 & (\mathbf{w}\cdot \mathbf{x} \le b).
+\end{cases}
+$$
 
----
-
-# 12. Activation Functions
-
-Add nonlinearity to the model. Without them, deep networks would collapse into a single linear transform.
-
-## 1) Step Function
-- Used in simple perceptrons.
-- Not differentiable at the threshold and yields zero gradient elsewhere → no learning signal.
-
-## 2) Sigmoid
-\[
-\sigma(x) = \frac{1}{1 + e^{-x}}
-\]
-- Continuous, differentiable, outputs (0,1).
-- **Problems**:
-  - **Zigzag** updates: all gradients have the same sign, causing inefficient optimization.
-  - **Vanishing gradient** in deep networks (sigmoid derivative < 1, repeated multiplication → 0).
-
-## 3) Tanh
-\[
-\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
-\]
-- Ranges from -1 to +1 (zero-centered).
-- Still suffers from vanishing gradient, though less severe than sigmoid.
-
-## 4) ReLU (Rectified Linear Unit)
-\[
-\text{ReLU}(x) = \max(0, x)
-\]
-- Eliminates vanishing gradients for positive inputs; gradient=1 if \(x>0\).
-- **Issues**:
-  - **Zigzag** still possible.
-  - **Dying ReLU**: if inputs are negative, output is zero, gradient is zero → “dead” neuron.
-
-## 5) Leaky ReLU / PReLU
-- **Leaky ReLU**: introduces a small slope for negative inputs (e.g., \(\alpha x\) for \(x<0\)) to avoid dying ReLUs.
-- **PReLU**: learns the \(\alpha\) parameter.
-
-## 6) ELU / GELU
-- **ELU**: adds negative saturation with an exponential approach.
-- **GELU**: used in BERT/GPT; approximates a Gaussian error function, often performs better in deep networks.
+- **XOR** is not linearly separable → multi-layer perceptrons needed (inspired deeper neural networks).
 
 ---
 
-# 13. Gradient Descent & Backpropagation
+## 12. Activation Functions
 
-## Gradient Descent
-\[
-w \leftarrow w - \alpha \,\frac{\partial E}{\partial w}
-\]
-- Iteratively updates weights \(w\) in the direction that reduces loss \(E\).
-- **\(\alpha\)** is the learning rate.
+### Step Function
+$$
+\text{step}(x) = 
+\begin{cases}
+1 & (x \ge 0) \\
+0 & (x < 0)
+\end{cases}
+$$
+- Non-differentiable at 0; derivative is 0 elsewhere → no gradient flow.
 
-## Backpropagation
-- Algorithm to compute gradients \(\frac{\partial E}{\partial w}\) by applying the **chain rule** from the output layer back to the input layers.
+### Sigmoid
+$$
+\sigma(x) = \frac{1}{1 + e^{-x}}.
+$$
+- Smooth, outputs in \((0,1)\).
+- Prone to **vanishing gradients**.
+
+### Tanh
+$$
+\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}.
+$$
+- Outputs in \((-1,1)\).
+- Still faces vanishing gradient issues, but is zero-centered.
+
+### ReLU
+$$
+\text{ReLU}(x) = \max(0,x).
+$$
+- Simple, less vanishing gradient for \(x>0\).
+- **Dying ReLU** problem: negative inputs yield 0, which can kill gradient updates.
+
+### Leaky ReLU
+$$
+\text{LeakyReLU}(x) = 
+\begin{cases}
+x & (x \ge 0) \\
+\alpha x & (x < 0)
+\end{cases}
+$$
+- Allows a small slope \(\alpha\) for \(x<0\).
+
+### PReLU, ELU, GELU
+- **PReLU**: learns \(\alpha\) instead of using a fixed slope.
+- **ELU**: exponential linear unit, helps negative inputs converge more smoothly.
+- **GELU**: used in BERT/GPT, approximates Gaussian error function, often better for deep nets.
 
 ---
+
+## 13. Gradient Descent & Backpropagation
+
+### Gradient Descent
+$$
+w \leftarrow w - \alpha\, \frac{\partial E}{\partial w},
+$$
+where \(\alpha\) is the learning rate and \(E\) is the loss function.
+
+### Backpropagation
+- Uses the **chain rule** to compute \(\tfrac{\partial E}{\partial w}\) from output layers back to input layers.
+- Allows deep networks to train by gradient-based optimization.
+
+---
+
 
 # korean.ver
 # Mathematics-used-in-AI
-
-이것의 내용은 wiki부분에 있습니다.
 # 평균, 기댓값, 분산
 ## 평균(mean)
  평균은 자료를 대표하는 값으로 모든 데이터 값을 더한한 것을 데이터의 수로 나눈것 평균의 종류로는 산술 평균, 조화 평균 기하 평균이 있다. 조화 평균은 기준이 다를때 기준을 통일 시키기 위해 역수를 평균낸다음 다시 역수를 취하주는 것이다. 기하 평균은 예를 들어 종이를 1/2복사하고 2배를 복사했다치다 그럼 이종이는 평균 몇 배 복사 되었다? -->루트(1/2*2)=1 즉, n개의 양수 값을 모두 곱한 값을 n제곱근한 값이다.
