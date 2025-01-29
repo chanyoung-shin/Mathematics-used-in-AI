@@ -73,22 +73,29 @@ $$
 - \(\text{Cov}(X,Y) > 0\) → positive relationship; \(\text{Cov}(X,Y) < 0\) → negative relationship; near 0 → likely no linear relationship.
 
 ### Covariance Matrix (공분산 행렬)
-- For \(n\) variables \(\{x_1, \dots, x_n\}\),
+For \(n\) variables \(\{x_1, \dots, x_n\}\), the covariance matrix \(\Sigma\) is defined as:
+
 $$
+
 \Sigma =
 \begin{bmatrix}
-\text{Var}(x_1) & \text{Cov}(x_1, x_2) & \dots & \text{Cov}(x_1, x_n) \\
-\text{Cov}(x_2, x_1) & \text{Var}(x_2)   & \dots & \text{Cov}(x_2, x_n) \\
-\vdots         & \vdots         & \ddots & \vdots \\
-\text{Cov}(x_n, x_1) & \text{Cov}(x_n, x_2) & \dots & \text{Var}(x_n)
+\mathrm{Var}(x_1) & \mathrm{Cov}(x_1, x_2) & \dots & \mathrm{Cov}(x_1, x_n) \\
+\mathrm{Cov}(x_2, x_1) & \mathrm{Var}(x_2) & \dots & \mathrm{Cov}(x_2, x_n) \\
+\vdots & \vdots & \ddots & \vdots \\
+\mathrm{Cov}(x_n, x_1) & \mathrm{Cov}(x_n, x_2) & \dots & \mathrm{Var}(x_n)
 \end{bmatrix}.
+
 $$
 
 ### Correlation Coefficient (상관계수)
 - Standardized covariance:
+- 
+
 $$
+
 \rho_{X,Y}
 = \frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X) \text{Var}(Y)}}.
+
 $$
 
 ---
