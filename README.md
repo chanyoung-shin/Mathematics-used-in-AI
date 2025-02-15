@@ -253,14 +253,12 @@ $$
 
 - A linear model that outputs 0 or 1 based on a weighted sum vs. threshold:
   
-  $$
-  \text{output} \;=\;
-  \begin{cases}
-  1, & \mathbf{w}\cdot\mathbf{x} > b,\\
-  0, & \mathbf{w}\cdot\mathbf{x} \le b
-  \end{cases}
-  $$
-
+$$
+\text{output} = \begin{cases} 
+      1, & \mathbf{w} \cdot \mathbf{x} > b \\
+      0, & \mathbf{w} \cdot \mathbf{x} \le b
+   \end{cases}
+$$
 - **XOR** is not linearly separable → leads to multi-layer networks.
 
 ---
