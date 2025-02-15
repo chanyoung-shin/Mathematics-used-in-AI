@@ -196,13 +196,13 @@ P(H\mid E)
 \frac{P(E\mid H)\,P(H)}{P(E)}
 $$
 
-- Updates prior \(P(H)\) to posterior \(P(H\mid E)\) given evidence \(E\).
+- Updates prior \(P(H)\) to posterior \(P(H \mid E)\) given evidence \(E\).
 
 ---
 
 ## 8. Maximum Likelihood Estimation (MLE)
 
-- Finds parameters (e.g. \(\mu, \sigma\)) maximizing the **likelihood** of observed data.
+- Finds parameters (e.g., \(\mu\), \(\sigma\)) maximizing the **likelihood** of observed data.
 - Usually maximize log-likelihood for computational convenience.
 
 ---
@@ -224,7 +224,7 @@ Used for **dimensionality reduction** and decorrelation of features.
 ### Linear Regression
 
 $$
-\hat{y} \;=\; w\,x + b
+\hat{y} = wx + b
 $$
 
 - Minimize squared error \(\sum (y - \hat{y})^2\).
@@ -233,7 +233,7 @@ $$
 ### Logistic Regression
 
 - For **binary classification**.
-- Uses **sigmoid** to map \((-\infty, +\infty)\to (0,1)\).
+- Uses **sigmoid** to map \((-\infty, +\infty) \to (0, 1)\).
 - Loss: binary cross-entropy.
 
 ### Softmax Regression
