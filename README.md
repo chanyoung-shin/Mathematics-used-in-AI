@@ -1,4 +1,5 @@
 # english.ver
+This content is a summary of what was learned in the course Artificial Intelligence Mathematics 1 at Sejong University.
 # Mathematics-used-in-AI (Final Version)
 ---
 
