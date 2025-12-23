@@ -5,17 +5,17 @@ This content is a summary of what was learned in the course Artificial Intellige
 
 ## 1. Mean, Expected Value, Variance
 
-### Mean (평균)
+### Mean 
 
 - The **mean** is the sum of all data points divided by the number of points.  
 - Variants include arithmetic mean, harmonic mean, and geometric mean.
 
-### Expected Value (기댓값)
+### Expected Value 
 
 - The **expected value** is the long-run average outcome of a probabilistic event.
 - In large-sample scenarios (e.g., MNIST), “expectation” often emphasizes the probabilistic viewpoint.
 
-### Variance (분산)
+### Variance 
 
 For a **population** of \(n\) data points:
 
@@ -66,7 +66,7 @@ $$
 
 ## 3. Covariance and Correlation
 
-### Covariance (공분산)
+### Covariance 
 
 For two variables \(X\) and \(Y\), the sample covariance is:
 
@@ -104,7 +104,7 @@ $$
 \end{bmatrix}
 $$
 
-### Correlation Coefficient (상관계수)
+### Correlation Coefficient 
 
 $$
 \rho_{X,Y}
@@ -116,8 +116,7 @@ $$
 
 ## 4. Normalization vs. Standardization
 
-### Normalization (정규화)
-
+### Normalization 
 $$
 x^\prime
 \;=\;
@@ -127,7 +126,7 @@ $$
 - Rescales data to [0,1].
 - Preserves shape but unifies scale.
 
-### Standardization (표준화)
+### Standardization 
 
 $$
 x^\prime
@@ -164,7 +163,7 @@ $$
 
 ---
 
-## 6. Normal Distribution (정규 분포)
+## 6. Normal Distribution
 
 A continuous distribution \(N(\mu, \sigma^2)\):
 
@@ -175,7 +174,7 @@ f(x)
 \exp\!\Bigl(-\tfrac{(x - \mu)^2}{2\,\sigma^2}\Bigr).
 $$
 
-### Standard Normal (표준 정규 분포)
+### Standard Normal
 
 $$
 Z
@@ -189,7 +188,7 @@ $$
 
 ---
 
-## 7. Bayes' Theorem (베이즈 정리)
+## 7. Bayes' Theorem 
 
 $$
 P(H\mid E)
@@ -250,7 +249,7 @@ $$
 
 ---
 
-## 11. Perceptron (퍼셉트론)
+## 11. Perceptron 
 
 - A linear model that outputs 0 or 1 based on a weighted sum vs. threshold:
   
